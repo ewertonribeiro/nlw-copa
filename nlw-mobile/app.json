@@ -1,0 +1,33 @@
+{
+  "expo": {
+    "name": "nwlcopamobile",
+    "slug": "nwlcopamobile",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/iconNLW.png",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "image": "./assets/splashNLW.png",
+      "resizeMode": "cover",
+      "backgroundColor": "#000"
+    },
+    "updates": {
+      "fallbackToCacheTimeout": 0
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-iconNLW.png",
+        "backgroundColor": "#FFFFFF"
+      }
+    },
+    "web": {
+      "favicon": "./assets/favicon.p/faviconNLW.png"
+    }
+  }
+}
