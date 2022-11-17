@@ -1,5 +1,8 @@
 import Fastify from "fastify";
 import cors from "@fastify/cors";
+import { PrismaClient } from "@prisma/client";
+
+const prisma = new PrismaClient({ log: ["query"] });
 
 async function bootstrap() {
   const fastify = Fastify({
@@ -10,8 +13,9 @@ async function bootstrap() {
     origin: true,
   });
 
-  fastify.get("/", async (_, reply) => {
-    return reply.send({ hello: "world" });
+  fastify.get("/polls", async (_, reply) => {
+    const count = prisma.poll.count();
+    return reply.send({ count });
   });
 
   try {
