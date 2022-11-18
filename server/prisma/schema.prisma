@@ -19,9 +19,9 @@ model Poll {
   title     String
   code      String   @unique
   createdAt DateTime @default(now())
-  ownerId   String
+  ownerId   String?
 
-  owner       User          @relation(fields: [ownerId], references: [id])
+  owner       User?         @relation(fields: [ownerId], references: [id])
   Participant Participant[]
 }
 
@@ -33,6 +33,8 @@ model Participant {
   user  User    @relation(fields: [userId], references: [id])
   poll  Poll    @relation(fields: [pollId], references: [id])
   Guess Guess[]
+
+  @@unique([userId, pollId])
 }
 
 model User {
