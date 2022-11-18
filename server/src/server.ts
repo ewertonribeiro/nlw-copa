@@ -16,17 +16,17 @@ async function bootstrap() {
   });
 
   fastify.get("/polls/count", async (_, reply) => {
-    const count = prisma.poll.count();
+    const count = await prisma.poll.count();
     return reply.send({ count });
   });
 
   fastify.get("/users/count", async (_, reply) => {
-    const count = prisma.user.count();
+    const count = await prisma.user.count();
     return reply.send({ count });
   });
 
   fastify.get("/guesses/count", async (_, reply) => {
-    const count = prisma.guess.count();
+    const count = await prisma.guess.count();
     return reply.send({ count });
   });
 
