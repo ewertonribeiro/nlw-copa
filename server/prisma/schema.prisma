@@ -19,4 +19,52 @@ model Poll {
   title     String
   code      String   @unique
   createdAt DateTime @default(now())
+  ownerId   String
+
+  owner       User          @relation(fields: [ownerId], references: [id])
+  Participant Participant[]
+}
+
+model Participant {
+  id     String @id @default(cuid())
+  userId String
+  pollId String
+
+  user  User    @relation(fields: [userId], references: [id])
+  poll  Poll    @relation(fields: [pollId], references: [id])
+  Guess Guess[]
+}
+
+model User {
+  id        String   @id @default(cuid())
+  name      String
+  email     String   @unique
+  avatarUrl String?
+  createdAt DateTime @default(now())
+
+  Participant Participant[]
+  ownPoll     Poll[]
+}
+
+model Game {
+  id             String   @id @default(cuid())
+  date           DateTime
+  firstTeamCode  String
+  secondTeamCode String
+
+  Guess Guess[]
+}
+
+model Guess {
+  id String @id @default(cuid())
+
+  firstTeamPoints  Int
+  secondTeamPoints Int
+  createdAt        DateTime @default(now())
+
+  gameId        String
+  participantId String
+
+  participant Participant @relation(fields: [participantId], references: [id])
+  game        Game        @relation(fields: [gameId], references: [id])
 }
